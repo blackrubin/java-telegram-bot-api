@@ -42,6 +42,7 @@ public class UpdatesHandler {
                 if (listener == null) return;
 
                 if (!response.isOk() || response.updates() == null || response.updates().size() <= 0) {
+                    sleep();
                     getUpdates(request);
                     return;
                 }
@@ -60,6 +61,7 @@ public class UpdatesHandler {
 
             @Override
             public void onFailure(GetUpdates request, IOException e) {
+                sleep();
                 getUpdates(request);
             }
         });
@@ -67,6 +69,14 @@ public class UpdatesHandler {
 
     private int lastUpdateId(List<Update> updates) {
         return updates.get(updates.size() - 1).updateId();
+    }
+
+    private void sleep() {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

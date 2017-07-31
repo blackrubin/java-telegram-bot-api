@@ -20,12 +20,12 @@ public class TestGetUpdatesListener {
 
         bot.setUpdatesListener(new UpdatesListener() {
 
-            int updatesCount = 5;
+//            int updatesCount = 5;
 
             @Override
             public int process(List<Update> updates) {
                 System.out.println(updates);
-                if (--updatesCount <= 0) bot.removeGetUpdatesListener();
+//                if (--updatesCount <= 0) bot.removeGetUpdatesListener();
                 return UpdatesListener.CONFIRMED_UPDATES_ALL;
             }
         });
