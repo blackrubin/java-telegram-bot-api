@@ -7,10 +7,17 @@ repositories {
     jcenter()
 }
 
-dependencies {
-    compile project(':library')
+compileJava.options.encoding = 'UTF-8'
 
-    compile 'com.sparkjava:spark-core:2.2'
-    compile 'org.jsoup:jsoup:1.8.3'
-    compile 'io.reactivex:rxjava:1.0.16'
+task stage(type: Copy) {
+    from sourceSets.main.runtimeClasspath
+    into 'build/staging'
+}
+stage.dependsOn build
+
+dependencies {
+    compile 'com.sparkjava:spark-core:2.3'
+    compile 'com.github.pengrad:java-telegram-bot-api:3.0.1'
+	compile 'com.eclipsesource.minimal-json:minimal-json:0.9.4'
+	compile 'mysql:mysql-connector-java:5.1.37'
 }
